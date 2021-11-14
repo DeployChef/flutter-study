@@ -57,11 +57,16 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/img/mars.png
+
   fonts:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-SemiBold.ttf
           weight: 600
+          
+  
 
   # To add assets to your application, add an assets section, like this:
   # assets:
