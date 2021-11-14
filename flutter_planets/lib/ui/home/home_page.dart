@@ -13,14 +13,6 @@ class HomePage extends StatelessWidget {
         children: [
           GradientBar("Planets App"),
           HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
-          HomePageBody(),
         ],
       ),
     );
