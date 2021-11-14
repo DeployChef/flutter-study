@@ -1,4 +1,5 @@
 import 'package:flutter/Material.dart';
+import 'package:flutter_planets/ui/home/gradient_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -6,7 +7,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Text("Body"),
+      body: Column(
+        children: [GradientBar("Planets App")],
+      ),
     );
   }
 }
