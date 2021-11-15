@@ -7,18 +7,18 @@ import 'package:flutter_planets/ui/home/planet_row.dart';
 class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Expanded(
-      child: new Container(
-        color: new Color(0xFF736AB7),
-        child: new CustomScrollView(
+    return Expanded(
+      child: Container(
+        color: Color(0xFF736AB7),
+        child: CustomScrollView(
           scrollDirection: Axis.vertical,
           slivers: <Widget>[
-            new SliverPadding(
+            SliverPadding(
               padding: const EdgeInsets.symmetric(vertical: 24.0),
-              sliver: new SliverFixedExtentList(
+              sliver: SliverFixedExtentList(
                 itemExtent: 161.0,
-                delegate: new SliverChildBuilderDelegate(
-                    (context, index) => new PlanetRow(planets[index]),
+                delegate: SliverChildBuilderDelegate(
+                    (context, index) => PlanetRow(planets[index]),
                   childCount: planets.length,
 
                 ),
