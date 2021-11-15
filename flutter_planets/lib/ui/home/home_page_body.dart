@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_planets/model/planet.dart';
 import 'package:flutter_planets/ui/home/planet_row.dart';
