@@ -12,10 +12,20 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Planet Detail"),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text("Go Back"),
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(planet.name),
+            Hero(
+                tag: "planet-hero-${planet.id}",
+                child: Image.asset(
+                  planet.image,
+                  width: 96,
+                  height: 96,
+                )),
+          ],
         ),
       ),
     );

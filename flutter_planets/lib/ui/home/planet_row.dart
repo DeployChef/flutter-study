@@ -96,11 +96,13 @@ class PlanetRow extends StatelessWidget {
         vertical: 16.0,
       ),
       alignment: FractionalOffset.centerLeft,
-      child: Image(
-        image: AssetImage(planet.image),
-        height: 92.0,
-        width: 92.0,
-      ),
+      child: Hero(
+          tag: "planet-hero-${planet.id}",
+          child: Image(
+            image: AssetImage(planet.image),
+            height: 92,
+            width: 92,
+          )),
     );
 
     return GestureDetector(
