@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_planets/model/planet.dart';
 import 'package:flutter_planets/ui/home/detail_page.dart';
 
-class PlanetRow extends StatelessWidget {
+class PlanetSummary extends StatelessWidget {
   final Planet planet;
-  PlanetRow(this.planet);
+  final bool horizontal;
+
+  PlanetSummary(this.planet, {this.horizontal = true});
+
+  PlanetSummary.vertical(this.planet) : horizontal = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +36,12 @@ class PlanetRow extends StatelessWidget {
     }
 
     final planetCardContent = Container(
-      margin: EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: EdgeInsets.fromLTRB(
+          horizontal ? 76.0 : 16, horizontal ? 16.0 : 42, 16.0, 16.0),
       constraints: BoxConstraints.expand(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
           Container(
             height: 4.0,
@@ -60,10 +66,12 @@ class PlanetRow extends StatelessWidget {
           Row(
             children: [
               new Expanded(
+                  flex: horizontal ? 1 : 0,
                   child: _planetValue(
                       value: planet.distance,
                       image: 'assets/img/ic_distance.png')),
               new Expanded(
+                  flex: horizontal ? 1 : 0,
                   child: _planetValue(
                       value: planet.gravity,
                       image: 'assets/img/ic_gravity.png'))
@@ -74,9 +82,11 @@ class PlanetRow extends StatelessWidget {
     );
 
     final planetCard = Container(
-      height: 130.0,
+      height: horizontal ? 130.0 : 160,
       child: planetCardContent,
-      margin: EdgeInsets.only(left: 46.0),
+      margin: horizontal
+          ? EdgeInsets.only(left: 46.0)
+          : EdgeInsets.only(left: 72.0),
       decoration: BoxDecoration(
         color: Color(0xFF333366),
         shape: BoxShape.rectangle,
@@ -95,7 +105,8 @@ class PlanetRow extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         vertical: 16.0,
       ),
-      alignment: FractionalOffset.centerLeft,
+      alignment:
+          horizontal ? FractionalOffset.centerLeft : FractionalOffset.center,
       child: Hero(
           tag: "planet-hero-${planet.id}",
           child: Image(
@@ -106,8 +117,14 @@ class PlanetRow extends StatelessWidget {
     );
 
     return GestureDetector(
-        onTap: () => Navigator.of(context).push(
-            PageRouteBuilder(pageBuilder: (_, __, ___) => DetailPage(planet))),
+        onTap: horizontal
+            ? () => Navigator.of(context).push(PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => DetailPage(planet),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(opacity: animation, child: child),
+                ))
+            : null,
         child: Container(
           height: 130.0,
           margin: const EdgeInsets.symmetric(
