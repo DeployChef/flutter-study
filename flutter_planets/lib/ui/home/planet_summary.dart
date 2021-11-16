@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_planets/model/planet.dart';
 import 'package:flutter_planets/ui/home/detail_page.dart';
 
+import '../style.dart';
+
 class PlanetSummary extends StatelessWidget {
   final Planet planet;
   final bool horizontal;
@@ -12,26 +14,11 @@ class PlanetSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseTextStyle = TextStyle(fontFamily: "Poppins");
-
-    final headerTextStyle = baseTextStyle.copyWith(
-      color: Colors.white,
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600,
-    );
-
-    final regularTextStyle = baseTextStyle.copyWith(
-        color: const Color(0xffb6b2df),
-        fontSize: 9.0,
-        fontWeight: FontWeight.w400);
-
-    final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
-
     Widget _planetValue({required String value, required String image}) {
       return new Row(children: <Widget>[
         new Image.asset(image, height: 12.0),
         new Container(width: 8.0),
-        new Text(planet.gravity, style: regularTextStyle),
+        new Text(planet.gravity, style: Style.smallTextStyle),
       ]);
     }
 
@@ -48,14 +35,14 @@ class PlanetSummary extends StatelessWidget {
           ),
           Text(
             planet.name,
-            style: headerTextStyle,
+            style: Style.headerTextStyle,
           ),
           Container(
-            height: 10.0,
+            height: 4.0,
           ),
           Text(
             planet.location,
-            style: subHeaderTextStyle,
+            style: Style.commonTextStyle,
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -64,13 +51,17 @@ class PlanetSummary extends StatelessWidget {
             color: Color(0xff00c6ff),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              new Expanded(
+              Expanded(
                   flex: horizontal ? 1 : 0,
                   child: _planetValue(
                       value: planet.distance,
                       image: 'assets/img/ic_distance.png')),
-              new Expanded(
+              Container(
+                width: 32.0,
+              ),
+              Expanded(
                   flex: horizontal ? 1 : 0,
                   child: _planetValue(
                       value: planet.gravity,
@@ -82,11 +73,10 @@ class PlanetSummary extends StatelessWidget {
     );
 
     final planetCard = Container(
-      height: horizontal ? 130.0 : 160,
+      height: horizontal ? 136.0 : 155.0,
       child: planetCardContent,
-      margin: horizontal
-          ? EdgeInsets.only(left: 46.0)
-          : EdgeInsets.only(left: 72.0),
+      margin:
+          horizontal ? EdgeInsets.only(left: 46.0) : EdgeInsets.only(top: 72.0),
       decoration: BoxDecoration(
         color: Color(0xFF333366),
         shape: BoxShape.rectangle,
@@ -126,7 +116,6 @@ class PlanetSummary extends StatelessWidget {
                 ))
             : null,
         child: Container(
-          height: 130.0,
           margin: const EdgeInsets.symmetric(
             vertical: 16.0,
             horizontal: 24.0,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_planets/model/planet.dart';
+import 'package:flutter_planets/ui/home/planet_summary.dart';
+import 'package:flutter_planets/ui/separator.dart';
+
+import '../style.dart';
 
 class DetailPage extends StatelessWidget {
   final Planet planet;
@@ -33,9 +37,32 @@ class DetailPage extends StatelessWidget {
   }
 
   Widget _getContent() {
+    final _overviewTitle = "Overview".toUpperCase();
     return ListView(
       padding: EdgeInsets.fromLTRB(0, 72, 0, 32),
-      children: [],
+      children: [
+        PlanetSummary(
+          planet,
+          horizontal: false,
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _overviewTitle,
+                style: Style.headerTextStyle,
+              ),
+              Separator(),
+              Text(
+                planet.description,
+                style: Style.commonTextStyle,
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 
