@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_planets/model/planet.dart';
+import 'package:flutter_planets/ui/home/detail_page.dart';
 
 class PlanetRow extends StatelessWidget {
   final Planet planet;
   PlanetRow(this.planet);
-  
 
-    
   @override
   Widget build(BuildContext context) {
     final baseTextStyle = TextStyle(fontFamily: "Poppins");
@@ -25,15 +24,12 @@ class PlanetRow extends StatelessWidget {
     final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
 
     Widget _planetValue({required String value, required String image}) {
-      return new Row(
-        children: <Widget>[
-          new Image.asset(image, height: 12.0),
-          new Container(width: 8.0),
-          new Text(planet.gravity, style: regularTextStyle),
-        ]
-      );
+      return new Row(children: <Widget>[
+        new Image.asset(image, height: 12.0),
+        new Container(width: 8.0),
+        new Text(planet.gravity, style: regularTextStyle),
+      ]);
     }
-
 
     final planetCardContent = Container(
       margin: EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
@@ -64,15 +60,13 @@ class PlanetRow extends StatelessWidget {
           Row(
             children: [
               new Expanded(
-                child: _planetValue(
-                  value: planet.distance,
-                  image: 'assets/img/ic_distance.png')
-              ),
+                  child: _planetValue(
+                      value: planet.distance,
+                      image: 'assets/img/ic_distance.png')),
               new Expanded(
-                child: _planetValue(
-                  value: planet.gravity,
-                  image: 'assets/img/ic_gravity.png')
-              )
+                  child: _planetValue(
+                      value: planet.gravity,
+                      image: 'assets/img/ic_gravity.png'))
             ],
           )
         ],
@@ -109,15 +103,18 @@ class PlanetRow extends StatelessWidget {
       ),
     );
 
-    return Container(
-      height: 130.0,
-      margin: const EdgeInsets.symmetric(
-        vertical: 16.0,
-        horizontal: 24.0,
-      ),
-      child: Stack(
-        children: [planetCard, planetThumbnail],
-      ),
-    );
+    return GestureDetector(
+        onTap: () => Navigator.of(context).push(
+            PageRouteBuilder(pageBuilder: (_, __, ___) => DetailPage(planet))),
+        child: Container(
+          height: 130.0,
+          margin: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 24.0,
+          ),
+          child: Stack(
+            children: [planetCard, planetThumbnail],
+          ),
+        ));
   }
 }
