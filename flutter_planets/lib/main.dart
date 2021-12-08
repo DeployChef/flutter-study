@@ -5,7 +5,7 @@ import 'package:flutter_planets/ui/home/home_page.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: "Planets",
+    title: "Planets 2.0",
     home: HomePage(),
     routes: <String, WidgetBuilder>{
       '/detail': (_) => DetailPage(planets[0]),
